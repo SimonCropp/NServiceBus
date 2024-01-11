@@ -41,7 +41,7 @@ Sagas must have at least one message that is allowed to start the saga. Add at l
         {
             if (!AllowedCorrelationPropertyTypes.Contains(correlationProperty.Type))
             {
-                var supportedTypes = string.Join(",", AllowedCorrelationPropertyTypes.Select(t => t.Name));
+                var supportedTypes = string.Join(',', AllowedCorrelationPropertyTypes.Select(t => t.Name));
 
                 throw new Exception($@"
 {correlationProperty.Type.Name} is not supported for correlated properties. Change the correlation property {correlationProperty.Name} on saga {name} to any of the supported types, {supportedTypes}, or use a custom saga finder.");
@@ -183,7 +183,7 @@ Sagas must have at least one message that is allowed to start the saga. Add at l
 
         if (propertyMappings.Count > 1)
         {
-            var messageTypes = string.Join(",", propertyMappings.SelectMany(g => g.Select(m => m.MessageType.FullName)).Distinct());
+            var messageTypes = string.Join(',', propertyMappings.SelectMany(g => g.Select(m => m.MessageType.FullName)).Distinct());
             throw new Exception($"Sagas can only have mappings that correlate on a single saga property. Use custom finders to correlate {messageTypes} to saga {sagaType.Name}");
         }
 

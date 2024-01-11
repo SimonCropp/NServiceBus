@@ -68,7 +68,7 @@ public class AutoSubscribe : Feature
                 if (Logger.IsDebugEnabled)
                 {
                     Logger.DebugFormat("Auto subscribed to events {0}",
-                        string.Join<Type>(",", eventsToSubscribe));
+                        string.Join<Type>(',', eventsToSubscribe));
                 }
             }
             catch (AggregateException e)

@@ -52,7 +52,7 @@ class LicenseReminder : Feature
             Tier = licenseManager.result.License.Edition,
             LicenseStatus = licenseManager.result.License.GetLicenseStatus(),
             LicenseLocation = licenseManager.result.Location,
-            ValidApplications = string.Join(",", licenseManager.result.License.ValidApplications),
+            ValidApplications = string.Join(',', licenseManager.result.License.ValidApplications),
             CommercialLicense = licenseManager.result.License.IsCommercialLicense,
             IsExpired = licenseManager.HasLicenseExpired,
             licenseManager.result.License.ExpirationDate,

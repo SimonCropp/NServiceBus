@@ -21,7 +21,7 @@ static class ContextPropagation
             headers[Headers.DiagnosticsTraceState] = activity.TraceStateString;
         }
 
-        var baggage = string.Join(",", activity.Baggage.Select(item => $"{item.Key}={Uri.EscapeDataString(item.Value)}"));
+        var baggage = string.Join(',', activity.Baggage.Select(item => $"{item.Key}={Uri.EscapeDataString(item.Value)}"));
         if (!string.IsNullOrEmpty(baggage))
         {
             headers[Headers.DiagnosticsBaggage] = baggage;
