@@ -240,7 +240,12 @@ public class AssemblyScanner
 
         try
         {
-            referencedAssembly = Assembly.Load(assemblyName);
+            // Use contextual reflection to ensure assembly loading happens in the correct ALC
+            var alc = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly());
+            using (alc?.EnterContextualReflection())
+            {
+                referencedAssembly = Assembly.Load(assemblyName);
+            }
         }
         catch (Exception ex) when (ex is FileNotFoundException or BadImageFormatException or FileLoadException) { }
 

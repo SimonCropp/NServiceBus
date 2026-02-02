@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
+using System.Runtime.Loader;
 
 static class MethodInfoExtensions
 {
@@ -23,7 +24,14 @@ static class MethodInfoExtensions
         {
             try
             {
-                return method.MakeGenericMethod(genericTypes).Invoke(target, args);
+                // Enter the contextual reflection scope of the first generic type's assembly
+                // to ensure any assembly loading during MakeGenericMethod/Invoke happens
+                // in the correct AssemblyLoadContext (not the Default ALC)
+                var alc = AssemblyLoadContext.GetLoadContext(genericTypes[0].Assembly);
+                using (alc?.EnterContextualReflection())
+                {
+                    return method.MakeGenericMethod(genericTypes).Invoke(target, args);
+                }
             }
             catch (TargetInvocationException e)
             {
