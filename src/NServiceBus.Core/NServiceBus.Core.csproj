@@ -54,6 +54,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="NServiceBus.AcceptanceTesting" Key="$(NServiceBusKey)" />
+    <InternalsVisibleTo Include="NServiceBus.Benchmarks" Key="$(NServiceBusTestsKey)" />
     <InternalsVisibleTo Include="NServiceBus.Core.Tests" Key="$(NServiceBusTestsKey)" />
     <InternalsVisibleTo Include="NServiceBus.PersistenceTests" Key="$(NServiceBusTestsKey)" />
   </ItemGroup>

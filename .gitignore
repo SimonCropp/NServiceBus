@@ -105,3 +105,6 @@ src/scaffolding.config
 # Files use to contain envvar values, used by tools like direnv
 .env
 .envrc
+
+# BenchmarkDotNet output
+BenchmarkDotNet.Artifacts/
